@@ -2,7 +2,7 @@
   "name": "Dream Home Cost Calculator India",
   "short_name": "DreamHomeCalc",
   "description": "Calculate your dream home construction cost in India.",
-  "start_url": "/index.html",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#f8f9fa",
   "theme_color": "#ff6f00",

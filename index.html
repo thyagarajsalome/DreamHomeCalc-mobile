@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Home Cost Calculator | India</title>
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="canonical" href="https://toolwebsite.in/construction.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar container">
+        <a href="#home" class="logo"
+          ><i class="fas fa-home"></i> DreamHomeCalc</a
+        >
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#tools" class="nav-link">Calculator</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home">
+        <div class="container">
+          <h1>Build Your Dream, Know Your Budget</h1>
+          <p>
+            Our free calculator gives you an instant, detailed cost estimate for
+            building your home in India. Plan smarter, avoid surprises, and
+            bring your vision to life.
+          </p>
+          <a href="#tools" class="cta-button"
+            >Start Calculating <i class="fas fa-arrow-down"></i
+          ></a>
+        </div>
+      </section>
+
+      <section id="about" class="container">
+        <h2 class="section-title">Why Use Our Calculator?</h2>
+        <p>
+          DreamHomeCalc was created to demystify the construction budgeting
+          process. We provide a transparent, easy-to-use tool for homeowners,
+          builders, and designers in India. Our estimates are based on current
+          market standards, giving you a realistic financial picture to help you
+          make informed decisions for your project.
+        </p>
+      </section>
+
+      <section id="tools">
+        <div class="container">
+          <h2 class="section-title">Construction Cost Calculator</h2>
+          <div class="card">
+            <form id="budgetForm">
+              <div class="form-group full-width">
+                <label for="quality"
+                  ><i class="fas fa-star"></i> Select Finish Quality</label
+                >
+                <div class="quality-selector">
+                  <input
+                    type="radio"
+                    id="quality-basic"
+                    name="quality"
+                    value="1800"
+                  />
+                  <label for="quality-basic">Basic</label>
+                  <input
+                    type="radio"
+                    id="quality-standard"
+                    name="quality"
+                    value="2000"
+                    checked
+                  />
+                  <label for="quality-standard">Standard</label>
+                  <input
+                    type="radio"
+                    id="quality-premium"
+                    name="quality"
+                    value="2200"
+                  />
+                  <label for="quality-premium">Premium</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="area"
+                  ><i class="fas fa-ruler-combined"></i> Total Area
+                  (sq.ft)</label
+                >
+                <input
+                  type="number"
+                  id="area"
+                  placeholder="e.g., 1200"
+                  required
+                  min="1"
+                />
+              </div>
+              <div class="form-group">
+                <label for="costPerSqft"
+                  ><i class="fas fa-rupee-sign"></i> Cost per sq.ft (INR)</label
+                >
+                <input
+                  type="number"
+                  id="costPerSqft"
+                  placeholder="e.g., 1600"
+                  required
+                  min="1"
+                />
+              </div>
+              <div class="form-group full-width">
+                <button type="submit" class="btn">
+                  <i class="fas fa-cogs"></i> Calculate Budget
+                </button>
+              </div>
+            </form>
+          </div>
+          <div id="resultsSection">
+            <div class="card">
+              <div id="totalSummary" class="total-summary">
+                <p>Total Estimated Cost</p>
+                <span id="finalTotalCost">₹0</span>
+              </div>
+              <div class="results-grid">
+                <div class="result-details">
+                  <h3>Cost Breakdown</h3>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Component</th>
+                        <th>Allocation</th>
+                        <th class="text-right">Cost (INR)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="breakdownTable"></tbody>
+                  </table>
+                </div>
+                <div class="chart-container">
+                  <canvas id="budgetChart"></canvas>
+                </div>
+              </div>
+              <div id="detailedBreakdownSection">
+                <h3 style="margin: 3rem 0 1rem; text-align: center">
+                  Detailed Component Breakdown
+                </h3>
+                <div
+                  id="detailedComponents"
+                  class="detailed-breakdown-grid"
+                ></div>
+              </div>
+              <div class="action-buttons" id="actionButtons">
+                <button id="downloadPdfBtn" class="btn">
+                  <i class="fas fa-file-pdf"></i> Download PDF
+                </button>
+                <button id="shareBudget" class="btn btn-secondary">
+                  <i class="fas fa-share-alt"></i> Share Budget
+                </button>
+                <button id="resetBudget" class="btn btn-secondary">
+                  <i class="fas fa-sync-alt"></i> Reset
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+          <details class="faq-item">
+            <summary>Is this calculator accurate?</summary>
+            <p>
+              This tool provides a preliminary estimate based on standard
+              industry percentages in India. Actual costs can vary based on your
+              specific location, material choices, labor rates, and
+              architectural design. Always consult with a professional
+              contractor for a detailed quote.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>What does "Finish Quality" mean?</summary>
+            <p>
+              <b>Basic:</b> Uses standard, budget-friendly materials for
+              flooring, paint, and fittings. <br /><b>Standard:</b> A mix of
+              quality and value, with better-grade materials and finishes.
+              <br /><b>Premium:</b> Involves high-end, luxury materials, branded
+              fittings, and specialized finishes.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>What is included in the estimate?</summary>
+            <p>
+              The estimate covers the core civil, finishing, and basic
+              electrical/plumbing work. It does not typically include the cost
+              of land, architectural fees, government permits, interior
+              furnishing, or landscaping.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <a href="#home" class="logo" style="color: #fff"
+          ><i class="fas fa-home"></i> DreamHomeCalc</a
+        >
+        <ul class="social-links">
+          <li>
+            <a href="#" aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+          </li>
+          <li>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="#" aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </li>
+        </ul>
+        <p style="margin-top: 1rem">
+          &copy; 2025 DreamHomeCalc. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    <script src="./script.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log(
+                "ServiceWorker registration successful with scope: ",
+                registration.scope
+              );
+            })
+            .catch((error) => {
+              console.log("ServiceWorker registration failed: ", error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

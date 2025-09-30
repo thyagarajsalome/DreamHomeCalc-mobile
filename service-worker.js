@@ -5,10 +5,11 @@ const urlsToCache = [
   "/style.css", // Assuming you'd move your CSS to a separate file, or it could be inline
   "/script.js", // Assuming you'd move your JS to a separate file
   "/manifest.json",
-  "/images/icon-192x192.png",
-  "/images/icon-512x512.png",
+  "images/icon-192x192.png",
+  "images/icon-512x512.png",
   "https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap",
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+
   "https://cdn.jsdelivr.net/npm/chart.js",
   "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
   "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js",

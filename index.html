@@ -21,9 +21,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <!-- Added a meta tag for theme color for a nicer mobile browser experience -->
     <meta name="theme-color" content="#ff6f00" />
@@ -249,7 +247,9 @@
       </div>
     </footer>
     <!-- Script registration - changed to absolute path -->
-    <script src="/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
@@ -267,5 +267,6 @@
         });
       }
     </script>
+    <script src="/script.js"></script>
   </body>
 </html>

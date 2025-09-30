@@ -194,11 +194,10 @@ section {
 /* --- CALCULATOR (TOOLS) SECTION --- */
 .card {
   background: var(--card-background);
-  padding: 2.5rem;
+  padding: 2rem;
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
-/* (All other calculator styles are the same, just copied below for completeness) */
 form {
   display: grid;
   gap: 1.5rem;
@@ -397,6 +396,60 @@ tbody tr:last-child td {
   color: #fff;
   transform: translateY(-3px);
 }
+/* --- INSTALL POP-UP STYLES --- */
+.install-popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.install-popup-container.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.install-popup-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+.install-popup-container.visible .install-popup-card {
+  transform: scale(1);
+}
+.install-popup-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+}
+.install-popup-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+.install-popup-card p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: var(--light-text-color);
+}
+.install-popup-buttons {
+  display: flex;
+  gap: 1rem;
+}
 
 /* --- MEDIA QUERIES for RESPONSIVENESS --- */
 @media (min-width: 768px) {
@@ -409,17 +462,27 @@ tbody tr:last-child td {
     align-items: center;
   }
   .detailed-breakdown-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+@media (max-width: 992px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  section {
+    padding: 3rem 0;
   }
 }
 @media (max-width: 767px) {
   .nav-menu {
-    position: absolute;
+    position: fixed;
     top: 80px;
     left: -100%;
     width: 100%;
+    height: calc(100vh - 80px);
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background: #fff;
     padding: 2rem 0;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
@@ -432,6 +495,15 @@ tbody tr:last-child td {
     display: block;
   }
   #home h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+  }
+  h2.section-title {
+    font-size: 1.8rem;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+  .action-buttons {
+    flex-direction: column;
   }
 }

@@ -243,6 +243,28 @@
         </p>
       </div>
     </footer>
+
+    <div id="install-popup" class="install-popup-container">
+      <div class="install-popup-card">
+        <img
+          src="./images/icon-192x192.png"
+          alt="DreamHomeCalc Icon"
+          class="install-popup-icon"
+        />
+        <h3>Install DreamHomeCalc</h3>
+        <p>
+          Add our calculator to your home screen for quick and easy access, even
+          offline.
+        </p>
+        <div class="install-popup-buttons">
+          <button id="install-button" class="btn">
+            <i class="fas fa-download"></i> Install
+          </button>
+          <button id="dismiss-button" class="btn btn-secondary">Later</button>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -250,7 +272,7 @@
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("service-worker.js") // Relative path for registration
+            .register("service-worker.js")
             .then((registration) => {
               console.log(
                 "ServiceWorker registration successful with scope: ",

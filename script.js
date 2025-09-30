@@ -34,8 +34,7 @@ window.addEventListener("scroll", () => {
   });
 });
 
-// --- CALCULATOR LOGIC (UNMODIFIED CORE) ---
-// (All your original, excellent calculator JS is here)
+// --- CALCULATOR LOGIC ---
 const mainBreakdown = {
   Foundation: 15,
   Structure: 35,
@@ -67,12 +66,14 @@ const shareBudgetBtn = document.getElementById("shareBudget");
 const downloadPdfBtn = document.getElementById("downloadPdfBtn");
 const canvas = document.getElementById("budgetChart");
 let myChart = null;
+
 const formatCurrency = (value) =>
   value.toLocaleString("en-IN", {
     style: "currency",
     currency: "INR",
     maximumFractionDigits: 0,
   });
+
 function animateValue(element, start, end, duration) {
   let startTimestamp = null;
   const step = (timestamp) => {
@@ -84,16 +85,19 @@ function animateValue(element, start, end, duration) {
   };
   window.requestAnimationFrame(step);
 }
+
 qualityRadios.forEach((radio) => {
   radio.addEventListener("change", function () {
     costPerSqftInput.value = this.value;
   });
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   costPerSqftInput.value = document.querySelector(
     'input[name="quality"]:checked'
   ).value;
 });
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const area = parseFloat(document.getElementById("area").value);
@@ -105,6 +109,7 @@ form.addEventListener("submit", function (e) {
   const totalCost = area * costPerSqft;
   updateUI(totalCost);
 });
+
 resetBudgetBtn.addEventListener("click", function () {
   form.reset();
   costPerSqftInput.value = document.querySelector(
@@ -113,6 +118,7 @@ resetBudgetBtn.addEventListener("click", function () {
   resultsSection.classList.remove("visible");
   if (myChart) myChart.destroy();
 });
+
 shareBudgetBtn.addEventListener("click", function () {
   const shareData = {
     title: "My House Construction Budget",
@@ -127,6 +133,7 @@ shareBudgetBtn.addEventListener("click", function () {
     alert("Sharing is not supported on your browser.");
   }
 });
+
 downloadPdfBtn.addEventListener("click", function () {
   const { jsPDF } = window.jspdf;
   const originalButtonText = this.innerHTML;
@@ -154,6 +161,7 @@ downloadPdfBtn.addEventListener("click", function () {
       this.disabled = false;
     });
 });
+
 function updateUI(totalCost) {
   animateValue(finalTotalCostSpan, 0, totalCost, 1500);
   breakdownTable.innerHTML = "";
@@ -190,6 +198,7 @@ function updateUI(totalCost) {
     resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
   }, 100);
 }
+
 function createOrUpdateChart(labels, data) {
   if (myChart) myChart.destroy();
   myChart = new Chart(canvas.getContext("2d"), {
@@ -226,3 +235,34 @@ function createOrUpdateChart(labels, data) {
     },
   });
 }
+
+// --- PWA INSTALL PROMPT LOGIC ---
+const installPopup = document.getElementById("install-popup");
+const installButton = document.getElementById("install-button");
+const dismissButton = document.getElementById("dismiss-button");
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installPopup.classList.add("visible");
+});
+
+installButton.addEventListener("click", async () => {
+  if (deferredPrompt) {
+    installPopup.classList.remove("visible");
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`User response to the install prompt: ${outcome}`);
+    deferredPrompt = null;
+  }
+});
+
+dismissButton.addEventListener("click", () => {
+  installPopup.classList.remove("visible");
+});
+
+window.addEventListener("appinstalled", () => {
+  installPopup.classList.remove("visible");
+  deferredPrompt = null;
+});

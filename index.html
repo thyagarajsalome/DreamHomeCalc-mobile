@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dream Home Cost Calculator | India</title>
-    <link rel="manifest" href="./manifest.json" />
-    <link rel="stylesheet" href="./style.css" />
+    <!-- PWA Manifest Link - changed to absolute path -->
+    <link rel="manifest" href="/manifest.json" />
+    <!-- Stylesheet Link - changed to absolute path -->
+    <link rel="stylesheet" href="/style.css" />
     <link rel="canonical" href="https://toolwebsite.in/construction.html" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,6 +24,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Added a meta tag for theme color for a nicer mobile browser experience -->
+    <meta name="theme-color" content="#ff6f00" />
   </head>
   <body>
     <header class="header">
@@ -243,12 +248,13 @@
         </p>
       </div>
     </footer>
-    <script src="./script.js"></script>
+    <!-- Script registration - changed to absolute path -->
+    <script src="/script.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("/service-worker.js")
+            .register("/service-worker.js") // Absolute path for registration
             .then((registration) => {
               console.log(
                 "ServiceWorker registration successful with scope: ",

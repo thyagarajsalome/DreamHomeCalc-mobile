@@ -190,7 +190,7 @@ function updateUI(totalCost) {
     resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
   }, 100);
 }
-function createOrUpdateChart(labels, data) {
+function createOrUpdateChart(labels, data) 
   if (myChart) myChart.destroy();
   myChart = new Chart(canvas.getContext("2d"), {
     type: "doughnut",
@@ -225,4 +225,4 @@ function createOrUpdateChart(labels, data) {
       },
     },
   });
-}
+

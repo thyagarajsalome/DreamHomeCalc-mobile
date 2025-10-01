@@ -23,8 +23,7 @@ body {
 /* Dark mode styles (optional, based on system preference) */
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: var(--background-dark);
-    color: var(--text-dark);
+    background-color: var(--background-light);
   }
 }
 

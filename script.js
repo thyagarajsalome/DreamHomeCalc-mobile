@@ -151,6 +151,7 @@ function updateUI(totalCost) {
   createOrUpdateChart(chartLabels, chartData);
 }
 
+// chart
 function createOrUpdateChart(labels, data) {
   if (myChart) myChart.destroy();
   myChart = new Chart(canvas.getContext("2d"), {
@@ -161,8 +162,8 @@ function createOrUpdateChart(labels, data) {
         {
           data: data,
           backgroundColor: chartColors,
-          borderColor: "#ffffff",
-          borderWidth: 4,
+          borderColor: "#343536ff", // FIX: Changed from white to a visible light grey to create separation.
+          borderWidth: 2, // FIX: Reduced border width for a cleaner look.
         },
       ],
     },
@@ -175,6 +176,7 @@ function createOrUpdateChart(labels, data) {
           labels: {
             font: { family: "'Manrope', sans-serif" },
             padding: 20,
+            color: "#101c22", // FIX: Explicitly set a dark color for the legend text.
           },
         },
         tooltip: {
@@ -187,7 +189,6 @@ function createOrUpdateChart(labels, data) {
     },
   });
 }
-
 resetBudgetBtn.addEventListener("click", function () {
   areaInput.value = "";
   costPerSqftInput.value = document.querySelector(
@@ -216,8 +217,48 @@ downloadPdfBtn.addEventListener("click", function () {
   const originalButtonText = this.innerHTML;
   this.innerHTML = "<span>Generating...</span>";
   this.disabled = true;
-  const content = document.querySelector("#results-screen");
-  html2canvas(content, { scale: 2, useCORS: true })
+
+  // Create a temporary div to render content for PDF generation
+  const pdfContent = document.createElement("div");
+  pdfContent.style.width = "794px"; // A4 width at 96dpi
+  pdfContent.style.padding = "40px";
+  pdfContent.style.backgroundColor = "#ffffff";
+  pdfContent.style.boxSizing = "border-box";
+  pdfContent.style.fontFamily = "'Manrope', sans-serif";
+
+  // **FIX: Inject a style tag to force dark text color for all elements**
+  pdfContent.innerHTML = `
+        <style>
+            * {
+                color: #101c22 !important; /* Use !important to override other styles */
+                -webkit-print-color-adjust: exact; /* Ensure color prints correctly */
+            }
+            .estimated-cost-label { color: #1a1a1aff !important; }
+        </style>
+        <div style="text-align: center;">
+            <h1 style="font-size: 1.5rem; font-weight: 700; margin: 0;">DreamHomeCalc</h1>
+            <p class="estimated-cost-label" style="font-size: 0.875rem;">ESTIMATED COST</p>
+            <p style="font-size: 3rem; font-weight: 800; margin-top: 0.5rem;">${finalTotalCostSpan.textContent}</p>
+        </div>
+        <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; text-align: center; margin-top: 2rem;">Cost Breakdown</h2>
+    `;
+
+  // Append Cloned Chart
+  const chartImage = canvas.toDataURL("image/png");
+  pdfContent.innerHTML += `<div style="text-align: center; margin-bottom: 2rem;"><img src="${chartImage}" style="max-width: 400px; margin: auto;"/></div>`;
+
+  // Append Cloned Table and Details
+  pdfContent.innerHTML += document.getElementById(
+    "cost-breakdown-table"
+  ).innerHTML;
+  pdfContent.innerHTML += `<h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; text-align: center; margin-top: 2rem;">Detailed Component Breakdown</h2>`;
+  pdfContent.innerHTML +=
+    document.getElementById("detailed-breakdown").innerHTML;
+
+  // Temporarily append to body to render
+  document.body.appendChild(pdfContent);
+
+  html2canvas(pdfContent, { scale: 2, useCORS: true })
     .then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF({
@@ -229,11 +270,16 @@ downloadPdfBtn.addEventListener("click", function () {
       const imgHeight = (canvas.height * pdfWidth) / canvas.width;
       pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imgHeight);
       pdf.save("House-Construction-Budget.pdf");
+
+      // Cleanup
+      document.body.removeChild(pdfContent);
       this.innerHTML = originalButtonText;
       this.disabled = false;
     })
     .catch((err) => {
       console.error("PDF generation failed:", err);
+      // Cleanup
+      document.body.removeChild(pdfContent);
       this.innerHTML = originalButtonText;
       this.disabled = false;
     });

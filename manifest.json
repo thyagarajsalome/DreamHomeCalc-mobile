@@ -4,8 +4,8 @@
   "description": "Calculate your dream home construction cost in India.",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#f8f9fa",
-  "theme_color": "#ff6f00",
+  "background_color": "#ffffff",
+  "theme_color": "#1193d4",
   "icons": [
     {
       "src": "images/icon-192x192.png",

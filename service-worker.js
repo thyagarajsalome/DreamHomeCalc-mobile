@@ -1,4 +1,4 @@
-const CACHE_NAME = "dreamhomecalc-v2"; // Incremented version to ensure update
+const CACHE_NAME = "dreamhomecalc-v3"; // Incremented version to ensure update
 const urlsToCache = [
   "./",
   "index.html",

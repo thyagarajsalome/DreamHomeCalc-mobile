@@ -6,243 +6,254 @@
     <title>Dream Home Cost Calculator | India</title>
     <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="canonical" href="https://toolwebsite.in/construction.html" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap"
       rel="stylesheet"
     />
     <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-    <meta name="theme-color" content="#ff6f00" />
+    <meta name="theme-color" content="#1193d4" />
   </head>
   <body>
-    <header class="header">
-      <nav class="navbar container">
-        <a href="#home" class="logo"
-          ><i class="fas fa-home"></i> DreamHomeCalc</a
-        >
-        <ul class="nav-menu">
-          <li><a href="#home" class="nav-link">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#tools" class="nav-link">Calculator</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
-        </ul>
-        <div class="hamburger">
-          <i class="fas fa-bars"></i>
+    <div id="welcome-screen" class="screen active">
+      <div class="welcome-container">
+        <div class="welcome-content">
+          <svg
+            class="logo-svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2L2 7L12 12L22 7L12 2Z"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            ></path>
+            <path
+              d="M2 17L12 22L22 17"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            ></path>
+            <path
+              d="M2 12L12 17L22 12"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+            ></path>
+          </svg>
+          <h1>DreamHomeCalc</h1>
+          <p>Estimate the cost of building your dream home in India.</p>
         </div>
-      </nav>
-    </header>
-
-    <main>
-      <section id="home">
-        <div class="container">
-          <h1>Build Your Dream, Know Your Budget</h1>
-          <p>
-            Our free calculator gives you an instant, detailed cost estimate for
-            building your home in India. Plan smarter, avoid surprises, and
-            bring your vision to life.
-          </p>
-          <a href="#tools" class="cta-button"
-            >Start Calculating <i class="fas fa-arrow-down"></i
-          ></a>
+        <div class="welcome-footer">
+          <button id="start-calculating" class="btn btn-primary">
+            Start Calculating
+          </button>
+          <p class="powered-by">Powered by BuildSmart</p>
         </div>
-      </section>
+      </div>
+    </div>
 
-      <section id="about" class="container">
-        <h2 class="section-title">Why Use Our Calculator?</h2>
-        <p>
-          DreamHomeCalc was created to demystify the construction budgeting
-          process. We provide a transparent, easy-to-use tool for homeowners,
-          builders, and designers in India. Our estimates are based on current
-          market standards, giving you a realistic financial picture to help you
-          make informed decisions for your project.
-        </p>
-      </section>
-
-      <section id="tools">
-        <div class="container">
-          <h2 class="section-title">Construction Cost Calculator</h2>
-          <div class="card">
-            <form id="budgetForm">
-              <div class="form-group full-width">
-                <label for="quality"
-                  ><i class="fas fa-star"></i> Select Finish Quality</label
-                >
+    <div id="main-app" class="screen">
+      <div class="app-container">
+        <main class="app-main">
+          <div id="calculator-screen" class="app-screen active">
+            <header class="app-header">
+              <h1>Construction Details</h1>
+            </header>
+            <div class="content-padding">
+              <div class="form-group">
+                <h2>Finish Quality</h2>
                 <div class="quality-selector">
-                  <input
-                    type="radio"
-                    id="quality-basic"
-                    name="quality"
-                    value="1800"
-                  />
-                  <label for="quality-basic">Basic</label>
-                  <input
-                    type="radio"
-                    id="quality-standard"
-                    name="quality"
-                    value="2000"
-                    checked
-                  />
-                  <label for="quality-standard">Standard</label>
-                  <input
-                    type="radio"
-                    id="quality-premium"
-                    name="quality"
-                    value="2200"
-                  />
-                  <label for="quality-premium">Premium</label>
+                  <label>
+                    <input name="finish-quality" type="radio" value="1800" />
+                    <span>Basic</span>
+                  </label>
+                  <label>
+                    <input
+                      checked
+                      name="finish-quality"
+                      type="radio"
+                      value="2000"
+                    />
+                    <span>Standard</span>
+                  </label>
+                  <label>
+                    <input name="finish-quality" type="radio" value="2200" />
+                    <span>Premium</span>
+                  </label>
                 </div>
               </div>
               <div class="form-group">
-                <label for="area"
-                  ><i class="fas fa-ruler-combined"></i> Total Area
-                  (sq.ft)</label
-                >
+                <label for="area">Total Area (sq.ft.)</label>
                 <input
-                  type="number"
                   id="area"
+                  class="form-input"
+                  inputmode="numeric"
                   placeholder="e.g., 1200"
-                  required
-                  min="1"
+                  type="number"
                 />
               </div>
               <div class="form-group">
                 <label for="costPerSqft"
-                  ><i class="fas fa-rupee-sign"></i> Cost per sq.ft (INR)</label
+                  >Cost per sq.ft override <span>(optional)</span></label
                 >
                 <input
-                  type="number"
                   id="costPerSqft"
-                  placeholder="e.g., 1600"
-                  required
-                  min="1"
+                  class="form-input"
+                  inputmode="numeric"
+                  placeholder="e.g., 1800"
+                  type="number"
                 />
               </div>
-              <div class="form-group full-width">
-                <button type="submit" class="btn">
-                  <i class="fas fa-cogs"></i> Calculate Budget
-                </button>
-              </div>
-            </form>
-          </div>
-          <div id="resultsSection">
-            <div class="card">
-              <div id="totalSummary" class="total-summary">
-                <p>Total Estimated Cost</p>
-                <span id="finalTotalCost">₹0</span>
-              </div>
-              <div class="results-grid">
-                <div class="result-details">
-                  <h3>Cost Breakdown</h3>
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Component</th>
-                        <th>Allocation</th>
-                        <th class="text-right">Cost (INR)</th>
-                      </tr>
-                    </thead>
-                    <tbody id="breakdownTable"></tbody>
-                  </table>
-                </div>
-                <div class="chart-container">
-                  <canvas id="budgetChart"></canvas>
-                </div>
-              </div>
-              <div id="detailedBreakdownSection">
-                <h3 style="margin: 3rem 0 1rem; text-align: center">
-                  Detailed Component Breakdown
-                </h3>
-                <div
-                  id="detailedComponents"
-                  class="detailed-breakdown-grid"
-                ></div>
-              </div>
-              <div class="action-buttons" id="actionButtons">
-                <button id="downloadPdfBtn" class="btn">
-                  <i class="fas fa-file-pdf"></i> Download PDF
-                </button>
-                <button id="shareBudget" class="btn btn-secondary">
-                  <i class="fas fa-share-alt"></i> Share Budget
-                </button>
-                <button id="resetBudget" class="btn btn-secondary">
-                  <i class="fas fa-sync-alt"></i> Reset
-                </button>
-              </div>
+            </div>
+            <div class="sticky-footer">
+              <button id="calculate-budget" class="btn btn-primary">
+                Calculate Budget
+              </button>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section id="faq" class="container">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-container">
-          <details class="faq-item">
-            <summary>Is this calculator accurate?</summary>
-            <p>
-              This tool provides a preliminary estimate based on standard
-              industry percentages in India. Actual costs can vary based on your
-              specific location, material choices, labor rates, and
-              architectural design. Always consult with a professional
-              contractor for a detailed quote.
-            </p>
-          </details>
-          <details class="faq-item">
-            <summary>What does "Finish Quality" mean?</summary>
-            <p>
-              <b>Basic:</b> Uses standard, budget-friendly materials for
-              flooring, paint, and fittings. <br /><b>Standard:</b> A mix of
-              quality and value, with better-grade materials and finishes.
-              <br /><b>Premium:</b> Involves high-end, luxury materials, branded
-              fittings, and specialized finishes.
-            </p>
-          </details>
-          <details class="faq-item">
-            <summary>What is included in the estimate?</summary>
-            <p>
-              The estimate covers the core civil, finishing, and basic
-              electrical/plumbing work. It does not typically include the cost
-              of land, architectural fees, government permits, interior
-              furnishing, or landscaping.
-            </p>
-          </details>
-        </div>
-      </section>
-    </main>
+          <div id="results-screen" class="app-screen">
+            <header class="app-header-secondary">
+              <button
+                class="icon-btn"
+                onclick="showScreen('calculator-screen', true)"
+              >
+                <span class="material-symbols-outlined">arrow_back</span>
+              </button>
+              <h1>DreamHomeCalc</h1>
+              <div style="width: 40px"></div>
+            </header>
+            <div class="text-center">
+              <p class="estimated-cost-label">ESTIMATED COST</p>
+              <p id="finalTotalCost" class="estimated-cost-amount">₹ 0</p>
+            </div>
+            <div class="content-padding">
+              <h2>Cost Breakdown</h2>
+              <div class="chart-container">
+                <canvas id="budgetChart"></canvas>
+              </div>
+              <div id="cost-breakdown-table"></div>
+              <h2>Detailed Component Breakdown</h2>
+              <div
+                id="detailed-breakdown"
+                class="detailed-breakdown-grid"
+              ></div>
+            </div>
+            <div class="content-padding action-buttons">
+              <div class="btn-group">
+                <button id="downloadPdfBtn" class="btn btn-primary">
+                  <span class="material-symbols-outlined">download</span>
+                  <span>Download PDF</span>
+                </button>
+                <button id="shareBudget" class="btn btn-secondary">
+                  <span class="material-symbols-outlined">share</span>
+                  <span>Share</span>
+                </button>
+              </div>
+              <button id="resetBudget" class="btn btn-tertiary">
+                <span class="material-symbols-outlined">restart_alt</span>
+                <span>Reset</span>
+              </button>
+            </div>
+          </div>
 
-    <footer class="footer">
-      <div class="container">
-        <a href="#home" class="logo" style="color: #fff"
-          ><i class="fas fa-home"></i> DreamHomeCalc</a
-        >
-        <ul class="social-links">
-          <li>
-            <a href="#" aria-label="Facebook"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-          </li>
-          <li>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          </li>
-          <li>
-            <a href="#" aria-label="Instagram"
-              ><i class="fab fa-instagram"></i
-            ></a>
-          </li>
-        </ul>
-        <p style="margin-top: 1rem">
-          &copy; 2025 DreamHomeCalc. All rights reserved.
-        </p>
+          <div id="faq-screen" class="app-screen">
+            <header class="app-header">
+              <h1>FAQs & Info</h1>
+            </header>
+            <main class="content-padding">
+              <section>
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-container">
+                  <details class="faq-item">
+                    <summary>
+                      <span
+                        >How do I calculate the cost of building a home?</span
+                      >
+                      <span class="material-symbols-outlined">expand_more</span>
+                    </summary>
+                    <p>
+                      Our app guides you through a step-by-step process. Simply
+                      input your plot size, desired construction area, material
+                      quality, and location to get a detailed cost estimate.
+                    </p>
+                  </details>
+                  <details class="faq-item">
+                    <summary>
+                      <span>What factors affect the cost estimation?</span>
+                      <span class="material-symbols-outlined">expand_more</span>
+                    </summary>
+                    <p>
+                      Key factors include location (city-specific labor and
+                      material costs), quality of materials (basic, mid-range,
+                      luxury), total built-up area, and complexity of the
+                      design.
+                    </p>
+                  </details>
+                  <details class="faq-item">
+                    <summary>
+                      <span>How accurate is the cost estimation?</span>
+                      <span class="material-symbols-outlined">expand_more</span>
+                    </summary>
+                    <p>
+                      Our estimates are based on current market rates in various
+                      Indian cities and are highly accurate for initial
+                      budgeting. For a precise quote, we recommend consulting
+                      with a registered contractor.
+                    </p>
+                  </details>
+                </div>
+              </section>
+              <section>
+                <h2>About DreamHomeCalc</h2>
+                <div class="about-card">
+                  <div class="about-item">
+                    <span>App Version</span>
+                    <span>1.0.0</span>
+                  </div>
+                  <a href="#" class="about-item">
+                    <span>Contact Us</span>
+                    <span class="material-symbols-outlined"
+                      >arrow_forward_ios</span
+                    >
+                  </a>
+                  <a href="#" class="about-item">
+                    <span>Privacy Policy</span>
+                    <span class="material-symbols-outlined"
+                      >arrow_forward_ios</span
+                    >
+                  </a>
+                </div>
+              </section>
+            </main>
+          </div>
+        </main>
+        <nav class="app-nav">
+          <a class="nav-item" href="#" data-screen="home">
+            <span class="material-symbols-outlined">home</span>
+            <span>Home</span>
+          </a>
+          <a class="nav-item active" href="#" data-screen="calculator-screen">
+            <span class="material-symbols-outlined">calculate</span>
+            <span>Calculator</span>
+          </a>
+          <a class="nav-item" href="#" data-screen="faq-screen">
+            <span class="material-symbols-outlined">help_outline</span>
+            <span>FAQs</span>
+          </a>
+        </nav>
       </div>
-    </footer>
+    </div>
 
     <div id="install-popup" class="install-popup-container">
       <div class="install-popup-card">
@@ -257,8 +268,9 @@
           offline.
         </p>
         <div class="install-popup-buttons">
-          <button id="install-button" class="btn">
-            <i class="fas fa-download"></i> Install
+          <button id="install-button" class="btn btn-primary">
+            <span class="material-symbols-outlined">download</span>
+            <span>Install</span>
           </button>
           <button id="dismiss-button" class="btn btn-secondary">Later</button>
         </div>
@@ -266,25 +278,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("service-worker.js")
-            .then((registration) => {
-              console.log(
-                "ServiceWorker registration successful with scope: ",
-                registration.scope
-              );
-            })
-            .catch((error) => {
-              console.log("ServiceWorker registration failed: ", error);
-            });
-        });
-      }
-    </script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -221,13 +221,21 @@
                     <span>App Version</span>
                     <span>1.0.0</span>
                   </div>
-                  <a href="#" class="about-item">
+                  <a
+                    href="#"
+                    class="about-item"
+                    onclick="showScreen('contact-screen')"
+                  >
                     <span>Contact Us</span>
                     <span class="material-symbols-outlined"
                       >arrow_forward_ios</span
                     >
                   </a>
-                  <a href="#" class="about-item">
+                  <a
+                    href="#"
+                    class="about-item"
+                    onclick="showScreen('privacy-screen')"
+                  >
                     <span>Privacy Policy</span>
                     <span class="material-symbols-outlined"
                       >arrow_forward_ios</span
@@ -235,6 +243,109 @@
                   </a>
                 </div>
               </section>
+            </main>
+          </div>
+
+          <div id="privacy-screen" class="app-screen">
+            <header class="app-header-secondary">
+              <button class="icon-btn" onclick="showScreen('faq-screen', true)">
+                <span class="material-symbols-outlined">arrow_back</span>
+              </button>
+              <h1>Privacy Policy</h1>
+              <div style="width: 40px"></div>
+            </header>
+            <main class="content-padding">
+              <p><strong>Last Updated: October 2, 2025</strong></p>
+
+              <p>
+                Welcome to DreamHomeCalc. We are committed to protecting your
+                privacy. This Privacy Policy explains how we handle your
+                information.
+              </p>
+
+              <h3>Information We Collect</h3>
+              <p>
+                DreamHomeCalc is a client-side application. This means all the
+                data you enter—such as area, finish quality, and cost per square
+                foot—is processed directly on your device.
+              </p>
+              <ul>
+                <li>
+                  <strong>We do not collect or store any personal data.</strong>
+                </li>
+                <li>
+                  <strong
+                    >We do not transmit your calculations to any server.</strong
+                  >
+                </li>
+                <li>
+                  All information remains private to you and is discarded when
+                  you close or refresh the app.
+                </li>
+              </ul>
+
+              <h3>How We Use Information</h3>
+              <p>
+                Since we do not collect any information, we do not use it for
+                any purpose.
+              </p>
+
+              <h3>Data Sharing and Disclosure</h3>
+              <p>
+                We do not have any of your data to share. The "Share"
+                functionality uses your device's native sharing capabilities to
+                share an image of the results you have generated. We do not see
+                or store what you share.
+              </p>
+
+              <h3>Changes to This Policy</h3>
+              <p>
+                We may update this Privacy Policy from time to time. We will
+                notify you of any changes by posting the new Privacy Policy on
+                this page.
+              </p>
+            </main>
+          </div>
+          <div id="contact-screen" class="app-screen">
+            <header class="app-header-secondary">
+              <button class="icon-btn" onclick="showScreen('faq-screen', true)">
+                <span class="material-symbols-outlined">arrow_back</span>
+              </button>
+              <h1>Contact Us</h1>
+              <div style="width: 40px"></div>
+            </header>
+            <main class="content-padding">
+              <h3>Get in Touch</h3>
+              <p>
+                Have questions, feedback, or suggestions? We'd love to hear from
+                you!
+              </p>
+              <div class="about-card">
+                <a href="mailto:contact@dreamhomecalc.com" class="about-item">
+                  <span>
+                    <strong>Email</strong>
+                    <br />
+                    contact@toolwebsite.in
+                  </span>
+                  <span class="material-symbols-outlined"
+                    >arrow_forward_ios</span
+                  >
+                </a>
+                <a
+                  href="https://www.youtube.com/@DreamHomeDesigns-3D"
+                  class="about-item"
+                  target="_blank"
+                >
+                  <span>
+                    <strong>YouTube</strong>
+                    <br />
+                    Dream Home Designs 3D
+                  </span>
+                  <span class="material-symbols-outlined"
+                    >arrow_forward_ios</span
+                  >
+                </a>
+              </div>
             </main>
           </div>
         </main>
